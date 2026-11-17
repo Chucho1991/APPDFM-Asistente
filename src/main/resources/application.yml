@@ -1,0 +1,14 @@
+spring:
+  main:
+    web-application-type: none
+    banner-mode: off
+logging:
+  level:
+    root: WARN
+
+oracle-sync:
+  test-directory: fuente/test
+  production-directory: fuente/produccion
+  result-directory: resultado
+  report-file: REPORTE.md
+  fallback-charset: windows-1252
