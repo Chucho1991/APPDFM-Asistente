@@ -5969,13 +5969,16 @@ CREATE OR REPLACE PACKAGE BODY TRX3.Scfr_Trx_Gnc_Utl_Pk IS
                                   
       --INI APARTADO DE RECARGAS / SERVICIOS - OBE - JAGC 20261022
       -- Recorre Recargas y Telepeajes
-      Scfr_Trx_Gnc_Pk.Trama_Pm_Recargas_Telepeajes(p_Transaccion
-                                  ,l_Trama_Pm(l_Itm) -- envio solo los datos de un producto y no todo el detalle
-                                  ,p_Trama_Dv --l_trama_dv
-                                  ,l_Codigo_Detalle
-                                  ,p_Tipo_Tx
-                                  ,x_Cod_Error
-                                  ,x_Msg_Error);   
+      IF p_Transaccion.Trama_Pos.Origen_Transaccion IN ('OBE' ) THEN
+        Scfr_Trx_Gnc_Pk.Trama_Pm_Recargas_Telepeajes(p_Transaccion
+                                    ,l_Trama_Pm(l_Itm) -- envio solo los datos de un producto y no todo el detalle
+                                    ,p_Trama_Dv --l_trama_dv
+                                    ,l_Codigo_Detalle
+                                    ,p_Tipo_Tx
+                                    ,x_Cod_Error
+                                   ,x_Msg_Error);              
+          
+      END IF;                             
       --FIN APARTADO DE RECARGAS / SERVICIOS - OBE - JAGC 20261022  
         
       -- inserta en tabla SCFR_RECAUDA_MOVIMIENTOS
